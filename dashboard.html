@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Beranda - videobelajar</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+    <style>
+      :root {
+        --primary-orange: #ff9900;
+        --primary-green: #4caf50;
+        --light-green: #edfcf0;
+        --bg-beige: #f7f3ed;
+        --text-dark: #333333;
+        --text-medium: #777777;
+        --text-light: #aaaaaa;
+        --border-light: #dddddd;
+        --card-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background-color: var(--bg-beige);
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        line-height: 1.6;
+        color: var(--text-dark);
+      }
+
+      .user-profile-card {
+        display: flex;
+        align-items: center;
+        gap: 15px;
+        background-color: #ffffff;
+        border-radius: 10px;
+        padding: 15px 20px;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+        max-width: 350px; /* Contoh: Batasi lebar kartu */
+        box-sizing: border-box;
+      }
+
+      .profile-avatar {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        object-fit: cover;
+        /* scale into small */
+
+        /* flex-shrink: 40; */
+      }
+
+      .profile-details {
+        display: flex;
+        flex-direction: column;
+      }
+
+      .profile-name {
+        font-size: 18px;
+        font-weight: 600;
+        color: #333333;
+        margin-bottom: 2px;
+      }
+
+      .profile-title {
+        font-size: 14px;
+        color: #777777;
+      }
+
+      .container {
+        width: 90%;
+        max-width: 1200px; /* Max width for content */
+        margin: 0 auto;
+        padding: 0 20px; /* Horizontal padding for smaller screens */
+        box-sizing: border-box;
+      }
+
+      /* --- Global Button Styles --- */
+      .btn {
+        display: inline-block;
+        padding: 14px 25px;
+        border: none;
+        border-radius: 8px;
+        font-size: 16px;
+        cursor: pointer;
+        transition: background-color 0.3s ease, color 0.3s ease;
+        font-weight: 600;
+        text-decoration: none;
+        text-align: center;
+      }
+
+      .btn-primary {
+        background-color: var(--primary-green);
+        color: #ffffff;
+      }
+
+      .btn-primary:hover {
+        background-color: #45a049;
+      }
+
+      .btn-secondary-outline {
+        background-color: transparent;
+        color: var(--primary-green);
+        border: 1px solid var(--primary-green);
+      }
+
+      .btn-secondary-outline:hover {
+        background-color: var(--light-green);
+      }
+
+      .btn-orange {
+        background-color: var(--primary-orange);
+        color: #ffffff;
+      }
+
+      .btn-orange:hover {
+        background-color: #e68a00;
+      }
+
+      /* --- Header Top Bar --- */
+      .top-header {
+        background-color: #ffffff;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+        padding: 15px 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+      }
+
+      .top-header .container {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+
+      .top-header h1 {
+        color: var(--primary-orange);
+        font-size: 28px;
+        font-weight: 600;
+        margin: 0;
+      }
+
+      .top-header .user-profile {
+        display: flex;
+        align-items: center;
+        gap: 10px;
+      }
+
+      .top-header .user-profile .category-btn {
+        color: var(--text-medium);
+        text-decoration: none;
+        font-size: 15px;
+        font-weight: 600;
+      }
+
+      .top-header .user-profile .profile-icon {
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background-color: #f0f0f0; /* Placeholder for user avatar */
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        color: var(--text-medium);
+        font-size: 20px;
+        overflow: hidden; /* For actual image */
+      }
+      .top-header .user-profile .profile-icon img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+      }
+
+      /* --- Hero Banner --- */
+      .hero-banner {
+        padding: 80px 0;
+        text-align: center;
+        /* Background properties removed from here */
+      }
+
+      .hero-banner::before {
+        /* Overlay for better text readability */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        z-index: -1;
+      }
+
+      .hero-banner .container {
+        max-width: 1200px; /* Adjust if needed */
+        margin: 0 auto;
+        padding: 0 20px;
+        box-sizing: border-box;
+      }
+      .hero-banner .hero-banner-content {
+        background-color: #222; /* Dark background for the image/overlay */
+        color: #ffffff;
+        background-image: url("https://via.placeholder.com/1200x400/333/666?text=Background+Image"); /* Placeholder background */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        z-index: 1;
+        padding: 60px 30px; /* Add padding inside the content area */
+        border-radius: 10px; /* Optional: Add rounded corners */
+      }
+
+      .hero-banner .hero-banner-content::before {
+        /* Overlay */
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.6); /* Dark overlay */
+        z-index: -1;
+        border-radius: inherit; /* Match rounded corners of parent */
+      }
+
+      .hero-banner .hero-banner-content h2 {
+        font-size: 38px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero-banner .hero-banner-content p {
+        font-size: 16px;
+        margin-bottom: 30px;
+        line-height: 1.5;
+      }
+
+      /* Adjust max-width for text content within the banner if needed */
+      .hero-banner .hero-banner-content .container {
+        max-width: 800px;
+        margin: 0 auto; /* Center the text content */
+        padding: 0; /* Reset padding from the outer container */
+      }
+
+      /* Responsive adjustments might need to target .hero-banner-content now */
+      @media (max-width: 1024px) {
+        .hero-banner .hero-banner-content h2 {
+          font-size: 32px;
+        }
+        .hero-banner .hero-banner-content p {
+          font-size: 15px;
+        }
+        .profile-avatar {
+          width: 1px;
+          height: 1px;
+        }
+      }
+
+      @media (max-width: 768px) {
+        .hero-banner {
+          padding: 60px 0;
+        }
+        .hero-banner .hero-banner-content {
+          padding: 40px 20px;
+        }
+        .hero-banner .hero-banner-content h2 {
+          font-size: 28px;
+        }
+        .hero-banner .hero-banner-content p {
+          font-size: 14px;
+        }
+        .hero-banner .hero-banner-content .btn {
+          padding: 12px 20px;
+          font-size: 15px;
+        }
+        .user-profile-card {
+          padding: 12px 15px;
+          gap: 10px;
+        }
+        .profile-avatar {
+          width: 10px;
+          height: 10px;
+        }
+        .profile-name {
+          font-size: 16px;
+        }
+        .profile-title {
+          font-size: 13px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .hero-banner {
+          padding: 40px 0;
+        }
+        .hero-banner .hero-banner-content {
+          padding: 30px 15px;
+        }
+        .hero-banner .hero-banner-content h2 {
+          font-size: 24px;
+        }
+        .hero-banner .hero-banner-content p {
+          font-size: 13px;
+        }
+        .hero-banner .hero-banner-content .btn {
+          padding: 10px 18px;
+          font-size: 14px;
+        }
+        .user-profile-card {
+          padding: 10px 12px;
+          gap: 8px;
+        }
+        .profile-avatar {
+          width: 45px;
+          height: 45px;
+        }
+        .profile-name {
+          font-size: 15px;
+        }
+        .profile-title {
+          font-size: 12px;
+        }
+      }
+
+      .hero-banner h2 {
+        font-size: 38px;
+        font-weight: 700;
+        margin-bottom: 20px;
+        line-height: 1.2;
+      }
+
+      .hero-banner p {
+        font-size: 16px;
+        margin-bottom: 30px;
+        line-height: 1.5;
+      }
+
+      /* --- Video Collection Section --- */
+      .video-collection {
+        padding: 60px 0;
+        background-color: var(--bg-beige);
+      }
+
+      .video-collection h2 {
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 40px;
+        text-align: center;
+      }
+
+      .video-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 30px;
+        justify-content: center;
+        align-items: stretch; /* Ensure cards stretch to same height */
+      }
+
+      .video-card {
+        background-color: #ffffff;
+        border-radius: 10px;
+        box-shadow: var(--card-shadow);
+        overflow: hidden; /* Hide overflowing parts of image */
+        display: flex;
+        flex-direction: column;
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .video-card img {
+        width: 100%;
+        height: 180px; /* Fixed height for image */
+        object-fit: cover; /* Crop image to fit */
+      }
+
+      .video-card-content {
+        padding: 15px;
+        display: flex;
+        flex-direction: column;
+        flex-grow: 1; /* Allow content to grow */
+      }
+
+      .video-card-content h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-top: 0;
+        margin-bottom: 8px;
+      }
+
+      .video-card-content .rating {
+        font-size: 14px;
+        color: #ffc107; /* Star color */
+        margin-bottom: 5px;
+      }
+      .video-card-content .rating-value {
+        font-size: 14px;
+        color: #333333ad; /* Star color */
+        margin-bottom: 5px;
+      }
+      .video-card-content .rating i {
+        margin-right: 2px;
+      }
+
+      .video-card-content .author {
+        font-size: 13px;
+        color: var(--text-medium);
+        margin-bottom: 15px;
+      }
+
+      .video-card-content .price {
+        font-size: 18px;
+        font-weight: 700;
+        color: var(--primary-green);
+        margin-top: auto; /* Push price to the bottom */
+      }
+
+      /* --- Newsletter Section --- */
+      .newsletter-section {
+        background-color: #333333; /* Dark background */
+        color: #ffffff;
+        padding: 80px 0;
+        text-align: center;
+        background-image: url("https://via.placeholder.com/1200x300/444/777?text=Newsletter+Background"); /* Placeholder background */
+        background-size: cover;
+        background-position: center;
+        position: relative;
+        z-index: 1;
+      }
+      .newsletter-section::before {
+        content: "";
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(0, 0, 0, 0.7); /* Darker overlay */
+        z-index: -1;
+      }
+
+      .newsletter-section .container {
+        max-width: 600px;
+      }
+
+      .newsletter-section h2 {
+        font-size: 32px;
+        font-weight: 700;
+        margin-bottom: 10px;
+      }
+
+      .newsletter-section p {
+        font-size: 16px;
+        margin-bottom: 30px;
+      }
+
+      .newsletter-form {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+      }
+
+      .newsletter-form input {
+        flex-grow: 1;
+        max-width: 300px;
+        padding: 12px 15px;
+        border: 1px solid #ffffff;
+        border-radius: 8px;
+        font-size: 16px;
+        background-color: rgba(
+          255,
+          255,
+          255,
+          0.1
+        ); /* Slightly transparent input */
+        color: #ffffff;
+        outline: none;
+      }
+
+      .newsletter-form input::placeholder {
+        color: rgba(255, 255, 255, 0.7);
+      }
+
+      .newsletter-form button {
+        padding: 12px 25px;
+      }
+
+      /* --- Footer --- */
+      .footer {
+        background-color: #333333;
+        color: #ffffff;
+        padding: 60px 0 20px;
+      }
+
+      .footer .container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+        gap: 30px;
+        margin-bottom: 40px;
+        justify-items: start; /* Align content to start within grid cells */
+      }
+
+      .footer-logo {
+        grid-column: span 1; /* Adjust span as needed for initial layout */
+        margin-right: 30px;
+      }
+
+      .footer-logo h2 {
+        color: var(--primary-orange);
+        font-size: 28px;
+        font-weight: 600;
+        margin-bottom: 15px;
+      }
+
+      .footer-logo p {
+        font-size: 14px;
+        line-height: 1.5;
+        color: #ccc;
+      }
+
+      .footer-section h3 {
+        font-size: 18px;
+        font-weight: 600;
+        margin-bottom: 15px;
+        color: #ffffff;
+      }
+
+      .footer-section ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      .footer-section ul li {
+        margin-bottom: 10px;
+      }
+
+      .footer-section ul li a {
+        color: #ccc;
+        text-decoration: none;
+        font-size: 14px;
+        transition: color 0.3s ease;
+      }
+
+      .footer-section ul li a:hover {
+        color: var(--primary-orange);
+      }
+
+      .footer-bottom {
+        text-align: center;
+        padding-top: 20px;
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+      }
+
+      .footer-bottom p {
+        font-size: 13px;
+        color: #aaa;
+        margin-bottom: 15px;
+      }
+
+      .social-icons a {
+        color: #aaa;
+        font-size: 20px;
+        margin: 0 10px;
+        transition: color 0.3s ease;
+      }
+
+      .social-icons a:hover {
+        color: var(--primary-orange);
+      }
+
+      .rating-container {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+
+      /* --- Responsive Adjustments --- */
+      @media (max-width: 1024px) {
+        .hero-banner h2 {
+          font-size: 32px;
+        }
+        .hero-banner p {
+          font-size: 15px;
+        }
+        .video-collection h2 {
+          font-size: 26px;
+        }
+        .footer .container {
+          grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        }
+      }
+
+      @media (max-width: 768px) {
+        .container {
+          width: 95%;
+          padding: 0 15px;
+        }
+
+        .top-header h1 {
+          font-size: 24px;
+        }
+        .top-header .user-profile .category-btn {
+          font-size: 14px;
+        }
+        .top-header .user-profile .profile-icon {
+          width: 35px;
+          height: 35px;
+          font-size: 18px;
+        }
+
+        .hero-banner {
+          padding: 60px 0;
+        }
+        .hero-banner h2 {
+          font-size: 28px;
+        }
+        .hero-banner p {
+          font-size: 14px;
+        }
+        .hero-banner .btn {
+          padding: 12px 20px;
+          font-size: 15px;
+        }
+
+        .video-collection {
+          padding: 40px 0;
+        }
+        .video-collection h2 {
+          font-size: 24px;
+          margin-bottom: 30px;
+        }
+        .video-grid {
+          grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+          gap: 20px;
+        }
+        .video-card img {
+          height: 160px;
+        }
+        .video-card-content h3 {
+          font-size: 16px;
+        }
+        .video-card-content .price {
+          font-size: 16px;
+        }
+
+        .newsletter-section {
+          padding: 60px 0;
+        }
+        .newsletter-section h2 {
+          font-size: 28px;
+        }
+        .newsletter-section p {
+          font-size: 14px;
+        }
+        .newsletter-form {
+          flex-direction: column; /* Stack input and button */
+          align-items: center;
+        }
+        .newsletter-form input {
+          width: 100%;
+          max-width: 300px;
+          margin-bottom: 10px;
+        }
+        .newsletter-form button {
+          width: 100%;
+          max-width: 300px;
+        }
+
+        .footer {
+          padding: 40px 0 15px;
+        }
+        .footer .container {
+          grid-template-columns: 1fr; /* Stack all footer sections */
+          text-align: center;
+          gap: 25px;
+        }
+        .footer-logo {
+          grid-column: span 1; /* Reset span for stacking */
+          margin-right: 0;
+        }
+        .footer-section ul {
+          display: flex; /* For horizontal list on small screens if desired */
+          flex-wrap: wrap;
+          justify-content: center;
+          gap: 10px 20px; /* Space between items */
+        }
+        .footer-section ul li {
+          margin-bottom: 0;
+        }
+        .footer-section h3 {
+          margin-bottom: 10px; /* Adjust margin for stacked layout */
+        }
+        .social-icons {
+          margin-top: 15px;
+        }
+      }
+
+      @media (max-width: 480px) {
+        .top-header h1 {
+          font-size: 22px;
+        }
+        .top-header .user-profile .category-btn {
+          display: none; /* Hide category button on very small screens */
+        }
+
+        .hero-banner {
+          padding: 40px 0;
+        }
+        .hero-banner h2 {
+          font-size: 24px;
+        }
+        .hero-banner p {
+          font-size: 13px;
+        }
+        .hero-banner .btn {
+          padding: 10px 18px;
+          font-size: 14px;
+        }
+
+        .video-collection {
+          padding: 30px 0;
+        }
+        .video-collection h2 {
+          font-size: 20px;
+          margin-bottom: 25px;
+        }
+        .video-grid {
+          grid-template-columns: 1fr; /* Single column on very small screens */
+          gap: 15px;
+        }
+        .video-card img {
+          height: 140px;
+        }
+        .video-card-content h3 {
+          font-size: 15px;
+        }
+        .video-card-content .rating {
+          font-size: 13px;
+        }
+        .video-card-content .author {
+          font-size: 12px;
+        }
+        .video-card-content .price {
+          font-size: 15px;
+        }
+
+        .newsletter-section {
+          padding: 40px 0;
+        }
+        .newsletter-section h2 {
+          font-size: 24px;
+        }
+        .newsletter-section p {
+          font-size: 13px;
+        }
+
+        .footer-logo h2 {
+          font-size: 24px;
+        }
+        .footer-logo p {
+          font-size: 13px;
+        }
+        .footer-section h3 {
+          font-size: 16px;
+        }
+        .footer-section ul li a {
+          font-size: 13px;
+        }
+        .footer-bottom p {
+          font-size: 12px;
+        }
+        .social-icons a {
+          font-size: 18px;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-header">
+      <div class="container">
+        <h1>videobelajar</h1>
+        <div class="user-profile">
+          <a href="#" class="category-btn">Kategori</a>
+          <div class="profile-icon">
+            <img
+              src="https://via.placeholder.com/40x40/ccc/888?text=DP"
+              alt="User Profile"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="hero-banner">
+      <div class="container">
+        <div class="hero-banner-content">
+          <h2>
+            Revolusi Pembelajaran: Temukan Ilmu Baru melalui Platform Video
+            Interaktif!
+          </h2>
+          <p>
+            Temukan ilmu baru yang relevan dan mendalam dengan video interaktif
+            kami. Anda akan dapat berinteraksi langsung dengan materi, memahami
+            konsep dengan lebih cepat, dan menerapkan pengetahuan dalam dunia
+            nyata.
+          </p>
+          <a href="#" class="btn btn-primary"
+            >Temukan Video Course untuk Dipelajari!</a
+          >
+        </div>
+      </div>
+    </section>
+
+    <section class="video-collection">
+      <div class="container">
+        <h2>Koleksi Video Pembelajaran Unggulan</h2>
+        <div class="video-grid">
+          <a href="#" class="video-card">
+            <img src="auditor_financial_analyst.jpg" alt="Video Thumbnail" />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+
+              <div class="user-profile-card">
+                <img
+                  src="profile1.png"
+                  style="max-width: 40px; height: auto; border-radius: 25%"
+                  alt="Small Image"
+                />
+                <div class="profile-details">
+                  <div class="profile-name">Jenna Ortega</div>
+                  <div class="profile-title">Senior Accountant di Gojek</div>
+                </div>
+              </div>
+              <div class="rating-container">
+                <div class="container" style="display: contents">
+                  <div class="rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="far fa-star"></i>
+                  </div>
+                  <u class="rating-value">4.0</u>
+                </div>
+
+                <div class="price">Rp 300K</div>
+              </div>
+            </div>
+          </a>
+          <a href="#" class="video-card">
+            <img src="auditor_financial_analyst_2.jpg" alt="Video Thumbnail" />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+              <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="far fa-star"></i> 4.0
+              </div>
+              <div class="author">
+                <img
+                  src="profile1.png"
+                  style="max-width: 40px; height: auto"
+                  alt="Small Image"
+                />
+                Jenna Ortega
+              </div>
+              <div class="price">Rp 300K</div>
+            </div>
+          </a>
+          <a href="#" class="video-card">
+            <img
+              src="https://via.placeholder.com/300x180/F5DEB3/000?text=Video+Thumbnail+3"
+              alt="Video Thumbnail"
+            />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+              <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i> 5.0
+              </div>
+              <div class="author">
+                <i class="fas fa-user-circle"></i> Jenna Ortega
+              </div>
+              <div class="price">Rp 300K</div>
+            </div>
+          </a>
+          <a href="#" class="video-card">
+            <img
+              src="https://via.placeholder.com/300x180/90EE90/000?text=Video+Thumbnail+4"
+              alt="Video Thumbnail"
+            />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+              <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star-half-alt"></i> 4.5
+              </div>
+              <div class="author">
+                <i class="fas fa-user-circle"></i> Jenna Ortega
+              </div>
+              <div class="price">Rp 300K</div>
+            </div>
+          </a>
+          <a href="#" class="video-card">
+            <img
+              src="https://via.placeholder.com/300x180/FFB6C1/000?text=Video+Thumbnail+5"
+              alt="Video Thumbnail"
+            />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+              <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="far fa-star"></i> 4.0
+              </div>
+              <div class="author">
+                <i class="fas fa-user-circle"></i> Jenna Ortega
+              </div>
+              <div class="price">Rp 300K</div>
+            </div>
+          </a>
+          <a href="#" class="video-card">
+            <img
+              src="https://via.placeholder.com/300x180/DDA0DD/000?text=Video+Thumbnail+6"
+              alt="Video Thumbnail"
+            />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+              <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i> 5.0
+              </div>
+              <div class="author">
+                <i class="fas fa-user-circle"></i> Jenna Ortega
+              </div>
+              <div class="price">Rp 300K</div>
+            </div>
+          </a>
+          <a href="#" class="video-card">
+            <img
+              src="https://via.placeholder.com/300x180/F08080/000?text=Video+Thumbnail+7"
+              alt="Video Thumbnail"
+            />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+              <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star-half-alt"></i> 4.5
+              </div>
+              <div class="author">
+                <i class="fas fa-user-circle"></i> Jenna Ortega
+              </div>
+              <div class="price">Rp 300K</div>
+            </div>
+          </a>
+          <a href="#" class="video-card">
+            <img
+              src="https://via.placeholder.com/300x180/FFD700/000?text=Video+Thumbnail+8"
+              alt="Video Thumbnail"
+            />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+              <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="far fa-star"></i> 4.0
+              </div>
+              <div class="author">
+                <i class="fas fa-user-circle"></i> Jenna Ortega
+              </div>
+              <div class="price">Rp 300K</div>
+            </div>
+          </a>
+          <a href="#" class="video-card">
+            <img
+              src="https://via.placeholder.com/300x180/87CEEB/000?text=Video+Thumbnail+9"
+              alt="Video Thumbnail"
+            />
+            <div class="video-card-content">
+              <h3>Big 4 Auditor Financial Analyst</h3>
+              <div class="rating">
+                <i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i><i class="fas fa-star"></i
+                ><i class="fas fa-star"></i> 5.0
+              </div>
+              <div class="author">
+                <i class="fas fa-user-circle"></i> Jenna Ortega
+              </div>
+              <div class="price">Rp 300K</div>
+            </div>
+          </a>
+        </div>
+      </div>
+    </section>
+
+    <section class="newsletter-section">
+      <div class="container">
+        <h2>Mau Belajar Lebih Banyak?</h2>
+        <p>
+          Dapatkan informasi terbaru seputar materi pembelajaran dan
+          program-program kami.
+        </p>
+        <form class="newsletter-form">
+          <input type="email" placeholder="Masukkan E-Mail Anda" />
+          <button type="submit" class="btn btn-orange">
+            Daftar Newsletter
+          </button>
+        </form>
+      </div>
+    </section>
+
+    <footer class="footer">
+      <div class="container">
+        <div class="footer-logo">
+          <h2>videobelajar</h2>
+          <p>Jelajahi Dunia Pengetahuan Melalui Platform Video Interaktif.</p>
+          <p>Malang, Jawa Timur, Indonesia</p>
+          <p>+62 877-763-1234</p>
+        </div>
+        <div class="footer-section">
+          <h3>Kategori</h3>
+          <ul>
+            <li><a href="#">Bisnis</a></li>
+            <li><a href="#">Keuangan</a></li>
+            <li><a href="#">Pengembangan Diri</a></li>
+            <li><a href="#">Desain</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Bantuan</h3>
+          <ul>
+            <li><a href="#">FAQ</a></li>
+            <li><a href="#">Kebijakan Privasi</a></li>
+            <li><a href="#">Syarat & Ketentuan</a></li>
+            <li><a href="#">Kontak Kami</a></li>
+          </ul>
+        </div>
+        <div class="footer-section">
+          <h3>Komunitas</h3>
+          <ul>
+            <li><a href="#">Blog</a></li>
+            <li><a href="#">Forum</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <p>&copy; 2025 Semua Hak Cipta Dilindungi.</p>
+        <div class="social-icons">
+          <a href="#"><i class="fab fa-linkedin-in"></i></a>
+          <a href="#"><i class="fab fa-instagram"></i></a>
+          <a href="#"><i class="fab fa-facebook-f"></i></a>
+          <a href="#"><i class="fab fa-twitter"></i></a>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

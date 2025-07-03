@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pendaftaran Akun - videobelajar</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #f7f3ed; /* Light beige background */
+            display: flex;
+            flex-direction: column;
+            align-items: center; /* Center horizontally */
+            min-height: 100vh;
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        .header {
+            width: 100%;
+            background-color: #ffffff;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+            padding: 20px 0;
+            /* text-align: center; REMOVED this */
+            margin-bottom: 20px;
+            display: flex; /* Added flex for centering its content */
+            /* justify-content: center; Center its content horizontally */
+        }
+
+        .header-content { /* NEW div to control the width of the h1 */
+            width: 90%; /* Match the percentage width of the card */
+            max-width: 450px; /* Match the max-width of the card */
+            text-align: left; /* Align text to the left within this content div */
+            margin-left: 20px;
+        }
+
+        .header h1 {
+            color: #ff9900;
+            font-size: 28px;
+            font-weight: 600;
+            margin: 0;
+        }
+
+        .register-card {
+            background-color: #ffffff;
+            border-radius: 10px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            padding: 40px 30px;
+            width: 90%;
+            max-width: 450px; /* Sedikit lebih lebar untuk halaman pendaftaran */
+            text-align: center;
+            box-sizing: border-box;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .register-card h2 {
+            font-size: 24px;
+            color: #333333;
+            margin-bottom: 10px;
+        }
+
+        .register-card p {
+            font-size: 14px;
+            color: #777777;
+            margin-bottom: 30px;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+
+        .form-group label {
+            display: block;
+            font-size: 14px;
+            color: #333333;
+            margin-bottom: 8px;
+        }
+
+        .form-group input:not(.phone-input) { /* Atur input kecuali phone-input */
+            width: 100%;
+            padding: 12px 15px;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        .form-group input:focus {
+            border-color: #ff9900;
+        }
+
+        /* Styling untuk Phone Number Input */
+        .phone-input-group {
+            display: flex;
+            gap: 10px; /* Jarak antara dropdown dan input nomor */
+        }
+
+        .phone-country-code {
+            flex-shrink: 0; /* Mencegah elemen menyusut */
+            padding: 12px 10px;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            font-size: 16px;
+            background-color: #f0f0f0; /* Warna latar belakang untuk dropdown */
+            display: flex;
+            align-items: center;
+            cursor: pointer;
+            position: relative;
+        }
+
+        .phone-country-code img {
+            width: 20px;
+            height: 15px; /* Sesuaikan tinggi bendera */
+            margin-right: 8px;
+        }
+
+        .phone-country-code span {
+            margin-right: 5px;
+            color: #555;
+        }
+
+        .phone-country-code .fa-chevron-down {
+            font-size: 10px;
+            color: #888;
+        }
+
+        .phone-input {
+            flex-grow: 1; /* Memungkinkan input mengisi sisa ruang */
+            padding: 12px 15px;
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+        }
+
+        /* Styling untuk Show/Hide Password */
+        .password-container {
+            position: relative;
+            text-align: left;
+            line-height: 1;
+        }
+
+        .password-container input {
+            width: 100%;
+            padding: 12px 15px;
+            padding-right: 40px; /* Ruang untuk ikon */
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            font-size: 16px;
+            box-sizing: border-box;
+            outline: none;
+            line-height: normal;
+            height: auto;
+        }
+
+        .password-container input:focus {
+            border-color: #ff9900;
+        }
+
+        .toggle-password {
+            position: absolute;
+            right: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+            cursor: pointer;
+            color: #aaa;
+            font-size: 18px;
+            line-height: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: auto;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+
+        .forgot-password {
+            text-align: right;
+            margin-bottom: 25px;
+        }
+
+        .forgot-password a {
+            font-size: 14px;
+            color: #ff9900;
+            text-decoration: none;
+            font-weight: 600;
+        }
+
+        .btn {
+            width: 100%;
+            padding: 14px;
+            border: none;
+            border-radius: 8px;
+            font-size: 16px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            font-weight: 600;
+            margin-bottom: 15px;
+        }
+
+        .btn-primary {
+            background-color: #4CAF50; /* Green */
+            color: #ffffff;
+        }
+
+        .btn-primary:hover {
+            background-color: #45a049;
+        }
+
+        .btn-secondary {
+            background-color: #edfcf0; /* Light green */
+            color: #4CAF50; /* Green text */
+            border: 1px solid #4CAF50;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0fae2;
+        }
+
+        .divider {
+            margin: 25px 0;
+            font-size: 14px;
+            color: #aaaaaa;
+            position: relative;
+        }
+
+        .divider::before,
+        .divider::after {
+            content: '';
+            position: absolute;
+            top: 50%;
+            width: 40%;
+            height: 1px;
+            background-color: #dddddd;
+        }
+
+        .divider::before {
+            left: 0;
+        }
+
+        .divider::after {
+            right: 0;
+        }
+
+        .btn-google {
+            background-color: #ffffff;
+            color: #555555;
+            border: 1px solid #dddddd;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 12px;
+        }
+
+        .btn-google img {
+            width: 20px;
+            height: 20px;
+            margin-right: 10px;
+        }
+
+        .btn-google:hover {
+            background-color: #f9f9f9;
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            body {
+                padding: 0;
+            }
+
+            .header {
+                padding: 15px 0;
+                margin-bottom: 20px;
+                /* On mobile, we want the text to align to the very left edge for consistency with full-width cards */
+                justify-content: flex-start; /* Align content to the start */
+            }
+
+            .header-content { /* On mobile, this div should take full width */
+                width: 100%;
+                max-width: none;
+                padding-left: 20px; /* Add padding to the left for consistency */
+                box-sizing: border-box; /* Include padding in width */
+            }
+
+
+            .header h1 {
+                font-size: 26px;
+            }
+
+            .register-card {
+                padding: 30px 20px;
+                border-radius: 0;
+                box-shadow: none;
+                width: 100%;
+                max-width: none;
+                margin-left: 0;
+                margin-right: 0;
+            }
+
+            .form-group {
+                margin-bottom: 18px;
+            }
+
+            .form-group label {
+                font-size: 13px;
+            }
+
+            .form-group input {
+                padding: 10px 12px;
+                font-size: 15px;
+            }
+
+            .phone-input-group {
+                gap: 5px; /* Kurangi jarak pada mobile */
+            }
+
+            .phone-country-code {
+                padding: 10px 8px;
+                font-size: 15px;
+            }
+
+            .phone-country-code img {
+                width: 18px;
+                height: 13px;
+            }
+
+            .phone-input {
+                padding: 10px 12px;
+                font-size: 15px;
+            }
+
+            .password-container input {
+                padding: 10px 12px;
+                padding-right: 35px; /* Sedikit kurang ruang untuk ikon */
+                font-size: 15px;
+            }
+
+            .toggle-password {
+                right: 10px; /* Sesuaikan posisi ikon */
+                font-size: 16px;
+            }
+
+            .forgot-password {
+                margin-bottom: 20px;
+            }
+
+            .btn {
+                padding: 12px;
+                font-size: 15px;
+            }
+
+            .btn-google {
+                padding: 10px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 24px;
+            }
+
+            .register-card {
+                padding: 25px 15px;
+            }
+
+            .register-card h2 {
+                font-size: 20px;
+            }
+
+            .register-card p {
+                font-size: 12px;
+                margin-bottom: 20px;
+            }
+
+            .btn {
+                font-size: 14px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <div class="header-content">
+            <h1>videobelajar</h1>
+        </div>
+    </div>
+    <div class="register-card">
+        <h2>Pendaftaran Akun</h2>
+        <p>Yuk, daftarkan akunmu sekarang juga!</p>
+
+        <form>
+            <div class="form-group">
+                <label for="fullName">Nama Lengkap <span style="color: red;">*</span></label>
+                <input type="text" id="fullName" name="fullName" placeholder="Masukkan Nama Lengkap Anda">
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-Mail <span style="color: red;">*</span></label>
+                <input type="email" id="email" name="email" placeholder="Masukkan E-Mail Anda">
+            </div>
+
+            <div class="form-group">
+                <label for="phone">No. Hp <span style="color: red;">*</span></label>
+                <div class="phone-input-group">
+                    <div class="phone-country-code">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/9/9f/Flag_of_Indonesia.svg" alt="Indonesia Flag">
+                        <span>+62</span>
+                        <i class="fas fa-chevron-down"></i>
+                    </div>
+                    <input type="tel" id="phone" name="phone" class="phone-input" placeholder="Masukkan Nomor HP Anda">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="password-container">
+                    <label for="password">Kata Sandi <span style="color: red;">*</span></label>
+                    <input type="password" id="password" name="password" placeholder="Masukkan Kata Sandi Anda">
+                    <span class="toggle-password" onclick="togglePasswordVisibility('password')">
+                        <i class="fas fa-eye-slash" id="password-eye-icon"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="password-container">
+                    <label for="confirmPassword">Konfirmasi Kata Sandi <span style="color: red;">*</span></label>
+                    <input type="password" id="confirmPassword" name="confirmPassword" placeholder="Konfirmasi Kata Sandi Anda">
+                    <span class="toggle-password" onclick="togglePasswordVisibility('confirmPassword')">
+                        <i class="fas fa-eye-slash" id="confirm-password-eye-icon"></i>
+                    </span>
+                </div>
+            </div>
+
+            <div class="forgot-password">
+                <a href="#">Lupa Password?</a>
+            </div>
+
+            <button type="submit" class="btn btn-primary">Daftar</button>
+            <button type="button" class="btn btn-secondary">Masuk</button>
+        </form>
+
+        <div class="divider">atau</div>
+
+        <button type="button" class="btn btn-google">
+            <img src="https://www.google.com/favicon.ico" alt="Google icon">
+            Daftar dengan Google
+        </button>
+    </div>
+
+    <script>
+        function togglePasswordVisibility(fieldId) {
+            const passwordField = document.getElementById(fieldId);
+            const eyeIcon = document.getElementById(fieldId + '-eye-icon');
+
+            if (passwordField.type === 'password') {
+                passwordField.type = 'text';
+                eyeIcon.classList.remove('fa-eye-slash');
+                eyeIcon.classList.add('fa-eye');
+            } else {
+                passwordField.type = 'password';
+                eyeIcon.classList.remove('fa-eye');
+                eyeIcon.classList.add('fa-eye-slash');
+            }
+        }
+    </script>
+</body>
+</html>
